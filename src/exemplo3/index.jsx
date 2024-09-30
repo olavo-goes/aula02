@@ -2,25 +2,28 @@ import { useEffect, useState } from "react";
 
 export default function App() {
   
-  const [??,??] = useState([]);
+  const [lista,setLista] = useState([]);
 
   useEffect(() => { 
 
-    const  ????  = async () => {
+    const  buscarUsuario  = async () => {
         const resposta = await fetch('https://randomuser.me/api');
         const dados = await resposta.json();
-         //complete o código
+        setLista(dados);
     }
-    //complete o código
+    buscarUsuario();
   }, []);
 
   return (
     <>
       <h1>Usuário</h1>
       <ul>
-        {
-            //complete o código
-        }
+        {lista.map((produto) => <li key={produto.id}>
+        <h2>{produto.title}</h2>
+        <p>{produto.description}</p>
+        <p>Preço: ${produto.price}</p>
+        <img src={produto.image} alt={produto.title} width={100} />
+          </li>)}
       </ul>
     </>
   );
